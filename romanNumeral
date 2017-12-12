@@ -1,0 +1,98 @@
+// Ally Zitzka
+import java.util.Scanner;
+public class RomanNumeral{
+    public static void main(String[] args){
+        Scanner console = new Scanner(System.in);
+        System.out.print("Number? ");
+        int number = console.nextInt();
+        String newRoman = convert(number);
+        System.out.println(newRoman);
+    }
+    public static String convert(int number){
+        String roman = "";
+        // checks if thousands place exists
+        if (number % 1000 != number){
+            for(int i = 0; i < number / 1000; i++){
+                roman += "M";
+            }
+            number %= 1000;
+        }
+        //checks if hundreds place exists
+        if (number % 100 != number){
+            int hundreds = number % 1000 / 100;
+            if (hundreds <= 3){
+                for(int i = 0; i < hundreds; i++){
+                    roman += "C";
+                }
+            }
+            else if (hundreds == 4){
+                roman += "CD";
+            }
+            else if (hundreds >= 5 && hundreds < 9){
+                roman += "D";
+                for(int i = 0; i < hundreds - 5; i++){
+                    roman += "C";
+                }
+            }
+            else if (hundreds == 9){
+                roman += "CM";
+            }
+            number %= 100;
+        }
+        // checks to see if tens place exists
+        if (number % 10 != number){
+            int tens = number % 100 / 10;
+            if (tens <= 3){
+                for(int i = 0; i < tens; i++){
+                    roman += "X";
+                }
+            }
+            else if (tens == 4){
+                roman += "XL";
+            }
+            else if (tens >= 5 && tens < 9){
+                roman += "L";
+                for(int i = 0; i < tens - 5; i++){
+                    roman += "X";
+                }
+            }
+            else if (tens == 9){
+                roman += "XC";
+            }
+            number %= 10;
+        }
+        // checks if ones place exists
+        if (number % 10 != 0){
+            int ones = number % 10;
+            if(ones <= 3){
+                for(int i = 0; i < ones; i++){
+                    roman += "I";
+                }
+            }
+            else if(ones == 4){
+                roman += "IV";
+            }
+            else if (ones >= 5 && ones < 9){
+                roman += "V";
+                for(int i = 0; i < ones - 5; i++){
+                    roman += "I";
+                }
+            }
+            else if (ones == 9){
+                roman += "IX";
+            }
+        }
+        return roman;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
